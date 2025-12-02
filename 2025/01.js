@@ -23,7 +23,14 @@ const part2 = () => {
 	lines.forEach((line) => {
 		const direction = line[0] === "R" ? 1 : -1;
 		const distance = Number(line.substring(1));
-		// TODO
+
+    const offset = dial ? (direction === 1 ? dial : 100 - dial) : 0;
+    const moves = offset + distance;
+    turns += Math.floor(moves / 100);
+
+    dial += direction * distance;
+    dial %= 100;
+    if (dial < 0) dial += 100;
 	});
 	console.log(turns);
 };
