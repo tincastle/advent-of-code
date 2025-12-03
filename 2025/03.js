@@ -21,3 +21,20 @@ const part1 = () => {
 };
 
 part1();
+
+const part2 = () => {
+	const jolts = banks.map((bank) => {
+		let jolt = 0;
+		for (let offset = 0, i = 11; i >= 0; i--) {
+			const bankExceptI = bank.slice(offset, bank.length - i);
+			const digit = Math.max(...bankExceptI);
+			jolt = jolt * 10 + digit;
+			offset += bankExceptI.indexOf(digit) + 1;
+		}
+		return jolt;
+	});
+	const sum = jolts.reduce((a, b) => a + b, 0);
+	console.log(sum);
+};
+
+part2();
